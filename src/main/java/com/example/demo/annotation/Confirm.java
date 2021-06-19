@@ -17,7 +17,7 @@ import com.example.demo.validation.ConfirmValidator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Confirm {
 
-	String message() default "{com.example.demo.validation.annotation.Confirm.message}";
+	String message() default "{validation.Confirm.message}";
 
     Class<?>[] groups() default {};
 

@@ -34,8 +34,8 @@ public class ConfirmValidator implements ConstraintValidator<Confirm, Object> {
         if (isMatched) {
             return true;
         } else {
-            context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("開始タグがありません").addConstraintViolation();
+        	context.disableDefaultConstraintViolation();
+        	context.buildConstraintViolationWithTemplate(message).addPropertyNode(field).addConstraintViolation();
             return false;
         }
     }
