@@ -5,11 +5,13 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.example.demo.annotation.Confirm;
+import com.example.demo.annotation.Unique;
 
 import lombok.Data;
 
 @Data
 @Confirm(field = "password")
+@Unique(field = "email", repositoryName = "PokedexRepository")
 public class PokedexForm {
 
 	@NotEmpty

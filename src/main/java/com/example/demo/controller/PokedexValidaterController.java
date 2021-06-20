@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.form.PokedexForm;
 import com.example.demo.form.ValidateResultForm;
 import com.example.demo.service.FormCheckService;
+import com.example.demo.service.RegistPokedexService;
 
 @RestController
 @RequestMapping("/regist-pokedex")
@@ -20,12 +21,19 @@ public class PokedexValidaterController {
 
 	@Autowired
 	FormCheckService fcService;
+	
+	@Autowired
+	RegistPokedexService rpService;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ValidateResultForm registPokemon(@Validated @RequestBody PokedexForm pokedexForm, BindingResult result) {
 
 		ValidateResultForm vrForm = fcService.getFormCheckResult(result);
+		if (!vrForm.isOk()) {
+			return vrForm;
+		}
+		rpService.regist(pokedexForm);
 		return vrForm;
 	}
 }

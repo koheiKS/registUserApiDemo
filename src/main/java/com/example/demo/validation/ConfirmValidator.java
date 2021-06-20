@@ -29,8 +29,7 @@ public class ConfirmValidator implements ConstraintValidator<Confirm, Object> {
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
         Object fieldValue = beanWrapper.getPropertyValue(field);
         Object confirmFieldValue = beanWrapper.getPropertyValue(confirmField);
-        boolean isMatched = ObjectUtils.nullSafeEquals(fieldValue,
-                confirmFieldValue);
+        boolean isMatched = ObjectUtils.nullSafeEquals(fieldValue, confirmFieldValue);
         if (isMatched) {
             return true;
         } else {
