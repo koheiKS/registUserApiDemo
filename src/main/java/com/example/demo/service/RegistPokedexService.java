@@ -12,7 +12,10 @@ public class RegistPokedexService {
 
 	@Autowired
 	PokedexRepository pokedexRepository;
-
+	
+	@Autowired
+	EncryptionService encryptionService;
+	
 	public void regist(PokedexForm pokedexForm) {
 		PokedexEntity pokedex = this.getPokedex(pokedexForm);
 		pokedexRepository.save(pokedex);
@@ -22,7 +25,8 @@ public class RegistPokedexService {
 		PokedexEntity pokedex = new PokedexEntity();
 		pokedex.setName(pokedexForm.getName());
 		pokedex.setEmail(pokedexForm.getEmail());
-		pokedex.setPassword(pokedexForm.getPassword());
+		String encryptedPassword = encryptionService.encrypt(pokedexForm.getPassword());
+		pokedex.setPassword(encryptedPassword);
 		return pokedex;
 	}
 }
